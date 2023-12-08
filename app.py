@@ -1,17 +1,22 @@
-from flask import Flask, render_template, request, send_file
-import pandas as pd
 from io import BytesIO
-from sklearn.impute import SimpleImputer
-from flask import Flask, render_template, request
+
 import joblib
 import pandas as pd
-from sklearn.impute import SimpleImputer
-from flask.blueprints import Blueprint
+from flask import Flask, render_template, request, send_file
 
 app = Flask(__name__)
-columns = ['zip_code', 'city', 'bed', 'bath', 'house_size', 'acre_lot', 'status', 'state']
-model = joblib.load('linear_regression_model.joblib')
-preprocessor = joblib.load('preprocessor.joblib')
+columns = [
+    "zip_code",
+    "city",
+    "bed",
+    "bath",
+    "house_size",
+    "acre_lot",
+    "status",
+    "state",
+]
+model = joblib.load("linear_regression_model.joblib")
+preprocessor = joblib.load("preprocessor.joblib")
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -68,18 +73,18 @@ def predict_get():
 
 
 # @app.post("/predict")
-@app.route('/predict', methods=['POST'])
+@app.route("/predict", methods=["POST"])
 def predict():
-    if request.method == 'POST':
-        bed = float(request.form['bed']) 
-        bath = float(request.form['bath'])
-        
-        # Matches what model was trained on 
-        input_data = pd.DataFrame({'bed': [bed], 'bath': [bath]})  
-        
+    if request.method == "POST":
+        bed = float(request.form["bed"])
+        bath = float(request.form["bath"])
+
+        # Matches what model was trained on
+        input_data = pd.DataFrame({"bed": [bed], "bath": [bath]})
+
         predicted_price = model.predict(input_data)[0]
 
-        return render_template('result.html', predicted_price=predicted_price)
+        return render_template("result.html", predicted_price=predicted_price)
 
 
 if __name__ == "__main__":

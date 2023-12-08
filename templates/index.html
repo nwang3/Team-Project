@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,7 +39,8 @@
             margin-bottom: 10px;
         }
 
-        button, .predict-button {
+        button,
+        .predict-button {
             background-color: #4caf50;
             color: #fff;
             padding: 10px 15px;
@@ -47,7 +49,8 @@
             cursor: pointer;
         }
 
-        input[type="submit"], .predict-button {
+        input[type="submit"],
+        .predict-button {
             background-color: #008CBA;
             color: #fff;
             padding: 10px 15px;
@@ -70,20 +73,22 @@
         }
     </style>
 </head>
+
 <body>
 
     <form method="POST" enctype="multipart/form-data">
-        <img src="https://www.eduopinions.com/wp-content/uploads/2018/07/BabsonCollege-logo.jpg" alt="Image" width="150">
+        <img src="https://www.eduopinions.com/wp-content/uploads/2018/07/BabsonCollege-logo.jpg" alt="Image"
+            width="150">
         <h2>Consolidate Excel</h2>
-        
+
         <label>Upload Files:</label>
-        
+
         <div id="file-container">
-            <input type="file" name="files"> 
+            <input type="file" name="files">
         </div>
-        
+
         <button type="button" onclick="addFile()">Add File</button>
-        
+
         <input type="submit">
     </form>
 
@@ -96,11 +101,12 @@
             count++;
             let container = document.getElementById("file-container");
             let input = document.createElement("input");
-            input.type = "file"; 
+            input.type = "file";
             input.name = "files";
-            container.appendChild(input); 
+            container.appendChild(input);
         }
     </script>
 
 </body>
+
 </html>

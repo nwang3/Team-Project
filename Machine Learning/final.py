@@ -1,29 +1,30 @@
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 import joblib
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
 
-# Assuming 'df' is your DataFrame containing the dataset
 df = pd.read_csv("Machine Learning/realtor-data.csv")
 
 # Drop unnecessary columns
-df = df[['bed', 'bath', 'price','house_size','acre_lot']]
+df = df[["bed", "bath", "price", "house_size", "acre_lot"]]
 
 # Handle missing values if necessary
-df['bed'].fillna(df['bed'].mode()[0], inplace=True)
-df['bath'].fillna(df['bath'].mode()[0], inplace=True)
+df["bed"].fillna(df["bed"].mode()[0], inplace=True)
+df["bath"].fillna(df["bath"].mode()[0], inplace=True)
 
 # Drop rows with missing values in the target variable 'price'
-df = df.dropna(subset=['price'])
+df = df.dropna(subset=["price"])
 
 
 # Train-test split
-features = ['bed', 'bath']
-target = 'price'
-X_train, X_test, y_train, y_test = train_test_split(df[features], df[target], test_size=0.2, random_state=42)
+features = ["bed", "bath"]
+target = "price"
+X_train, X_test, y_train, y_test = train_test_split(
+    df[features], df[target], test_size=0.2, random_state=42
+)
 
 # Model training
 model = LinearRegression()
@@ -40,5 +41,4 @@ print(f"R-squared (R2): {r2:.2f}")
 print(f"Mean Absolute Error (MAE): {mae:.2f}")
 
 # Save the model and preprocessor
-joblib.dump(model, 'linear_regression_model.joblib')
-
+joblib.dump(model, "linear_regression_model.joblib")

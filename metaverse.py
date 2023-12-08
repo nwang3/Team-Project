@@ -7,7 +7,10 @@ class RealEstateProperty:
         self.status = status
 
     def display_info(self):
-        print(f"Property Information:\nAddress: {self.address}\nPrice: ${self.price:,.2f}\nBedrooms: {self.bedrooms}\nBathrooms: {self.bathrooms}\nStatus: {self.status}")
+        print(
+            f"Property Information:\nAddress: {self.address}\nPrice: ${self.price:,.2f}\nBedrooms: {self.bedrooms}\nBathrooms: {self.bathrooms}\nStatus: {self.status}"
+        )
+
 
 class RealEstateAgent:
     def __init__(self, name):
@@ -22,6 +25,7 @@ class RealEstateAgent:
         for property in self.properties:
             property.display_info()
 
+
 class Buyer:
     def __init__(self, name, budget):
         self.name = name
@@ -33,10 +37,15 @@ class Buyer:
 
     def make_offer(self, property, offer_price):
         if offer_price >= property.price:
-            print(f"{self.name} makes an offer of ${offer_price:,.2f} for the property at {property.address}. Offer accepted!")
+            print(
+                f"{self.name} makes an offer of ${offer_price:,.2f} for the property at {property.address}. Offer accepted!"
+            )
             property.status = "Sold"
         else:
-            print(f"{self.name}'s offer of ${offer_price:,.2f} for the property at {property.address} is too low. Offer rejected.")
+            print(
+                f"{self.name}'s offer of ${offer_price:,.2f} for the property at {property.address} is too low. Offer rejected."
+            )
+
 
 # Example usage
 property1 = RealEstateProperty("123 Main St", 500000, 3, 2.5)
